@@ -1,0 +1,6 @@
+Integer Data Types:
+	1 Byte	Char -> -128, 127
+		Unsigned Char -> 0, 255
+	2 Byte	Short -> -32768, 32767
+		Unsigned Short -> 0, 64565
+	
