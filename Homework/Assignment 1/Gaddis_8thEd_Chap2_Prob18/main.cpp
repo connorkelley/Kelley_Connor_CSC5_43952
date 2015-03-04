@@ -27,8 +27,8 @@ int main(int argc, char** argv) {
     pCDrnks = 58;   //Percentage out of Energy Drinkers that prefer citrus drinks
     
     //Process / Calculate
-    nEDrnks = nCust/static_cast<float>(CNVPCT)*pEDrnks+0.5;     //Round Up
-    nCDrnks = nEDrnks/static_cast<float>(CNVPCT)*pCDrnks+0.5;   //Round Up
+    nEDrnks = nCust/static_cast<float>(CNVPCT)*pEDrnks+0.5;     //Round Up for sake of whole person
+    nCDrnks = nEDrnks/static_cast<float>(CNVPCT)*pCDrnks+0.5;   //Round Up for sake of whole person
     //Output Everything
     cout<<"Energy Drinks Customer Survey Problem"<<endl;
     cout<<"Known/Given Values: "<<endl;
