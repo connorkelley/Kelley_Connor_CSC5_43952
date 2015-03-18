@@ -23,9 +23,9 @@ int main(int argc, char** argv) {
     //Declare Variables
     unsigned seed = time(0); //Get the system time
     srand(seed); //Seed the random number generator
-    char ch;
-    unsigned short temp1 = rand() % 100 + 1;
-    unsigned short temp2 = rand() % 100 + 1;
+    char ch; //Pause the program
+    unsigned short temp1 = rand() % 1000 + 1;
+    unsigned short temp2 = rand() % 1000 + 1;
     unsigned short ans;
         
     //Calculate 
