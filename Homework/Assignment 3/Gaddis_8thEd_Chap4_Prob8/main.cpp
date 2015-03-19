@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
     cout<<"Please enter two Primary Colors (Red, Yellow, or Blue), separated by a single space."<<endl;
     cin>>color1>>color2;    
     
-    //If Block
+    //If Block for program to decide what colors were entered
     if ((color1 == "Red")&&(color2 == "Yellow")||((color1 == "Yellow")&&(color2 == "Red")))
     {
         cout<<"The colors Red and Yellow make Orange.";
