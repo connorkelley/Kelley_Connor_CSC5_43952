@@ -6,6 +6,7 @@
  * Problem 2 -> Multiply the numbers between 1 and 10
  * Problem 3 -> Divide the numbers between 1 and 10
  * Problem 4 -> Gaddis_7thEd_Chap4_Prob22 Cable Bill
+ * Problem 5 -> Gaddis_8thEd_Chap4_Prob23 Geometry Calculator
  * Modified on Mar 25th, 2015
  */
 
@@ -29,6 +30,7 @@ int main(int argc, char** argv) {
     cout<<"Type 2 to solve problem 2"<<endl;
     cout<<"Type 3 to solve problem 3"<<endl;
     cout<<"Type 4 to solve Gaddis_7thEd_Chap4_Prob22 Cable Bill"<<endl;
+    cout<<"Type 5 to solve Gaddis_8thEd_Chap4_Prob23 Geometry Calculator"<<endl;
     cout<<"Type anything else to quit with no solutions."<<endl;
     
     //Read the choice
@@ -58,7 +60,7 @@ int main(int argc, char** argv) {
                 cout<<endl;
                 break;
             }
-        case '4':{
+            case '4':{
                 //Declare Variables
                 ofstream out;
                 float vwdHrs;   //Hours Viewed
@@ -118,10 +120,70 @@ int main(int argc, char** argv) {
                 
                 break;
                 }
-                default:{
-                    cout<<"Exit?"<<endl;
-                }
-    }
+            case '5':{
+                //Declare Variables
+                char prob;  //Signifies what problem the switch solves
+                float area, radius, length, width, height, base;
+
+                //Program title
+                cout<<"\"Geometry Calculator\""<<endl;
+
+                //Prompt the User for Input
+                cout<<"1. Calculate the Area of a Circle"<<endl;
+                cout<<"2. Calculate the Area of a Rectangle"<<endl;
+                cout<<"3. Calculate the Area of a Triangle"<<endl;
+                cout<<"4. Quit"<<endl;
+                cin>>prob;
+
+                //Output the Problem selected   
+                switch (prob)
+                {
+                    case '1': cout <<"You have selected \"Calculate the Radius of a Circle\""<<endl;
+                            //Prompt the User for Input
+                            cout<<"Please enter a radius number: "<<endl;
+                            cin>>radius;
+
+                            //Calculate
+                            area = 3.14159 * (radius * radius);
+
+                            //Output
+                            cout<<"The area of your circle is: "<<area;
+
+                            break;
+                    case '2': cout <<"You have selected \"Calculate the Area of a Rectangle\""<<endl;
+                            //Prompt the User for Input
+                            cout<<"Please enter a length, then a width, separated by a single space:"<<endl;
+                            cin>>length>>width;
+
+                            //Calculate
+                            area = length * width;
+
+                            //Output
+                            cout<<"The area of your rectangle is: "<<area;
+
+                            break;
+                    case '3': cout <<"You have selected \"Calculate the Area of a Triangle\""<<endl;
+                            //Prompt the User for Input
+                            cout<<"Please enter a base, then a height, separated by a single space:"<<endl;
+                            cin>>base>>height;
+
+                            //Calculate
+                            area = base * height * 0.5f;
+
+                            //Output
+                            cout<<"The area of your triangle is: "<<area;
+
+                            break;
+                    case '4': cout <<"You have quit the program.";
+                            break;
+                    default: cout <<"You did not enter a number between 1 and 4.\n";                    
+                    }  
+            }
+
+            default:{
+                cout<<"Exit?"<<endl;
+            }
+        }
     //Exit Stage Right!
     return 0;
 }
