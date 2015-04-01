@@ -44,14 +44,14 @@ int main(int argc, char** argv) {
         do{
             doorOpn=rand()%3+1;
         } while (door==doorOpn||prize==doorOpn);    //Cant be the same
-        //What is the other door?
-        do{
-            othDoor=rand()%3+1;
-        } while (othDoor==doorOpn||othDoor==door);    //Cant be the same
         //Swap the doors given the opportunity
         if((stay!='s')&&(stay!='S')){   //Use DeMorgan's Laws to test validity
-            door = othDoor;  
-        }
+            //What is the other door?, meaning the door not chosen
+            do{
+                othDoor=rand()%3+1;
+            } while (othDoor==doorOpn||othDoor==door);    //Cant be the same
+                door = othDoor;  
+            }
         //Now statistically count how many wins and losses
         if(door==prize)win++;
         else lose++;
