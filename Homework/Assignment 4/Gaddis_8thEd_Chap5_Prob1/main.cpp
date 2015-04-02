@@ -18,9 +18,23 @@ using namespace std;
 //Execution Begins Here!
 int main(int argc, char** argv) {
     //Declare Variables
+    int posInt, sum; //Integer value from user input
     
-    //Loop for all possible digits
+    //Prompt for user input
+    cout<<"Please enter a positive integer value:"<<endl;
+    cin>>posInt;
     
+    if(posInt >= 0){
+        //Loop to desired value
+        for(int x=1; x <= posInt; x++){
+            sum += x;   
+        }    
+        cout<<sum;
+        
+    } else {
+        cout<<"You did not enter a positive integer!";
+    }
+   
     //Exit Stage Right!
     return 0;
 }
