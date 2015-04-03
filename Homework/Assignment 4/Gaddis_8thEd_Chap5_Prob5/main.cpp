@@ -21,12 +21,10 @@ int main(int argc, char** argv) {
     unsigned short memFee = 2500, sum;   //Current rate charged to country club members
     float incAmt = 0.04;     //Amount to increase
     
-    
     //Loop to calculate rate increase over the next six years
     for(int counter =1; counter <= 6; counter++){
-        sum += memFee*incAmt+memFee;
-        cout<<"The projected rate for "<<counter<<" year from now is "<<sum<<endl;
-        sum = 0;
+        sum = memFee*incAmt*counter+memFee;
+        cout<<"The projected rate for "<<counter<<" year from now is "<<sum<<"."<<endl;    
     }          
     
     //Exit Stage Right!
