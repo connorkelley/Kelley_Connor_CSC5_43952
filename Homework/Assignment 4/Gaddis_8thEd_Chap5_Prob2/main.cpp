@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
     char ascii;
     
     //Loop to output ASCII code
-    for(int x = 0; x <= 127; x++){
+    for(int x; x <= 127; x++){
         cout<<ascii;
         ascii++;
     }

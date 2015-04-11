@@ -23,8 +23,7 @@ int main(int argc, char** argv) {
     //Loop to desired value
     for(int counter =5; counter <=30; counter+=5){ //'x' = minutes on the treadmill
         sum = cal*counter;
-        cout<<"After "<<counter<<" minutes, you will burn "<<sum<<" calories on the treadmill."<<endl;
-        
+        cout<<"After "<<counter<<" minutes, you will burn "<<sum<<" calories on the treadmill."<<endl;    
     }
     
     //Exit Stage Right!

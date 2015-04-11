@@ -18,7 +18,7 @@ using namespace std;
 //Execution Begins Here!
 int main(int argc, char** argv) {
     //Declare Variables
-    unsigned int sales1, sales2, sales3, sales4, sales5, store, bar;
+    unsigned int sales1, sales2, sales3, sales4, sales5, bar;
     
     //Prompt the user for input
     cout<<"Please enter the sales for store 1: ";
@@ -39,25 +39,29 @@ int main(int argc, char** argv) {
     unsigned short stars4 = sales4/100;
     unsigned short stars5 = sales5/100;
     
-    cout<<"SALES BAR CHART \n (Each * = $100)"<<endl;
-    for (store = 1; store <= 5; store++){   //Makes 5 rows
-        cout<<"Store "<<store<<": ";    
-        for(int x; x < stars1; x++){
-            cout<<'*';
-        }   cout<<endl;
-        for(int x; x < stars2; x++){
-            cout<<'*';
-        }   cout<<endl;
-        for(int x; x < stars3; x++){
-            cout<<'*';
-        }   cout<<endl;
-        for(int x; x < stars4; x++){
-            cout<<'*';
-        }   cout<<endl;
-        for(int x; x < stars5; x++){
-            cout<<'*';
-        }   cout<<endl;
-        }
+    cout<<"SALES BAR CHART\n(Each * = $100)"<<endl;
+    cout<<"Store 1: ";    
+    for(int x; x < stars1; x++){
+        cout<<'*';
+    }   cout<<endl;
+    cout<<"Store 2: ";    
+    for(int x; x < stars2; x++){
+        cout<<'*';
+    }   cout<<endl;
+    cout<<"Store 3: ";    
+    for(int x; x < stars3; x++){
+        cout<<'*';
+    }   cout<<endl;
+    cout<<"Store 4: ";    
+    for(int x; x < stars4; x++){
+        cout<<'*';
+    }   cout<<endl;
+    cout<<"Store 5: ";    
+    for(int x; x < stars5; x++){
+        cout<<'*';
+    }   cout<<endl;
+        
+    
     
     //Exit Stage Right!
     return 0;
