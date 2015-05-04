@@ -16,24 +16,40 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-int largest (int [], const int, int);
+void larger (int [], const int, int);
+void initial (int [], int);
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
     //Declare Variables
-    srand();
     const int SIZE = 10;
-    
+    int numbers[SIZE];
     int n;
     
+    //Initialize the Array to Random Numbers
+    initial(numbers, SIZE);
     
     //Prompt the User for input
-    cout<<"Please enter";
+    cout<<"Enter an integer you want to find all values greater than: "<<endl;
+    cin>>n;
+    
+    //Find values larger than n
+    larger(numbers, SIZE, n);
     
     //Exit Stage Right!
     return 0;
 }
 
-int largest (int [], const int SIZE, int n){
-    
+void initial(int numbers[], int SIZE){
+    for (int count =0; count < SIZE; count++){
+        numbers[count]=rand()%100;
+    }
+}
+
+void larger (int numbers[], const int SIZE, int n){
+    for (int count =0; count <= SIZE; count++){
+        if(numbers[count] > n){
+            cout<<numbers[count]<<endl;
+        }
+    }
 }
