@@ -16,7 +16,7 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-void larger (int [], const int, int);
+void larger (int [], const int, int, int);
 void initial (int [], int);
 
 //Execution Begins Here!
@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
     //Declare Variables
     const int SIZE = 10;
     int numbers[SIZE];
-    int n;
+    int n=0, sum;
     
     //Initialize the Array to Random Numbers
     initial(numbers, SIZE);
@@ -34,7 +34,8 @@ int main(int argc, char** argv) {
     cin>>n;
     
     //Find values larger than n
-    larger(numbers, SIZE, n);
+    larger(numbers, SIZE, n, sum);
+    cout<<"There were "<<sum<<" numbers larger than the value you entered in the array."<<endl;
     
     //Exit Stage Right!
     return 0;
@@ -46,10 +47,11 @@ void initial(int numbers[], int SIZE){
     }
 }
 
-void larger (int numbers[], const int SIZE, int n){
+void larger (int numbers[], const int SIZE, int n, int sum){
     for (int count =0; count <= SIZE; count++){
         if(numbers[count] > n){
             cout<<numbers[count]<<endl;
+            sum++;
         }
     }
 }
