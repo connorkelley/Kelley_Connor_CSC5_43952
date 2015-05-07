@@ -33,4 +33,5 @@ void gameStr(){
         <<"Welcome to Pokemon\n"
         <<"  Push A to start \n"
         <<"******************\n";
+    cin>>
 }
