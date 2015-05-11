@@ -36,12 +36,7 @@ int main(int argc, char** argv) {
         }
         cout<<endl;
     }
-    
-    //Ask for input from user 1
-    cout<<"User 1, enter a row and column to put an X"<<endl;
-    cin>>board[user1][user1];
-    
-    
+       
     //Exit Stage Right!
     return 0;
 }
