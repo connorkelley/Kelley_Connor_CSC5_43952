@@ -29,9 +29,9 @@ int main(int argc, char** argv) {
 }
 
 void gameStr(){
-    cout<<"******************\n"
-        <<"Welcome to Pokemon\n"
-        <<"  Push A to start \n"
-        <<"******************\n";
-    cin>>
+    cout<<"*********************\n"
+        <<"Pokemon Connor Kelley\n"
+        <<" Push Enter to start \n"
+        <<"*********************\n";
+    
 }
