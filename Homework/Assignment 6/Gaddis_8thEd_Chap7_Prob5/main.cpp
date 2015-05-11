@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     const int mnkyNum = 3;  //3 Rows
     const int weekDay = 5;  //5 Columns
     int mnkyAry[mnkyNum][weekDay];  //3x5 Array
-    
+    int total, mnkyAvg;
     
     //Input data for each monkey
     cout<<"Enter the amount of food eaten per day by each of the following monkeys:"<<endl;
@@ -34,11 +34,17 @@ int main(int argc, char** argv) {
         }
     }
     
-    
-    
-    
     //Create a report that includes 
         //Average amount of food per day by the whole family of monkeys
+    for (int row = 0; row < mnkyNum; row++){
+        total = 0;
+        //Sum the Row
+        for (int col = 0; col < weekDay; col++){
+            total += mnkyAry[mnkyNum][weekDay];
+        }
+        mnkyAvg = total / weekDay;
+        cout<<"Average amount of food eaten for monkey "<<row+1<<mnkyAvg<<endl;
+    }
         //Least amount of food eaten during the week by any one monkey
         //Greatest amount of food eaten during the week by any one monkey
     
