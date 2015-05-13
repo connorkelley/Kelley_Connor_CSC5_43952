@@ -28,7 +28,6 @@ int main(int argc, char** argv) {
     char userKey[SIZE] = {};
     int nWrong, nRight;  //Number of wrong answers / Number of right answers
     
-    
     //Prompt the User for input
     cout<<"Please enter your responses for the following questions:"<<endl;
     cout<<"Answers must be A, B, C, or D"<<endl;
@@ -45,8 +44,7 @@ int main(int argc, char** argv) {
             cout<<"Correct answer: "<<ansKey[count]<<endl;
             nWrong++;
         } else nRight++;
-    }
-        
+    }    
     //Indicate whether student passed the exam or failed
     if(nWrong <= 5){
         cout<<endl<<"You passed the exam!"<<endl;

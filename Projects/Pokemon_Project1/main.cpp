@@ -59,6 +59,8 @@ int main(int argc, char** argv) {
         }
     } while(menu);
     
+    //Start battling...
+    
     
     
     
@@ -71,7 +73,7 @@ void gameStr(){
     //Display starting content (TITLE SCREEN)
     cout<<"************************\n"
         <<"Pokemon by Connor Kelley\n"
-        <<"  Push  Enter  to start \n"
+        <<"  Press  [Enter]  to start \n"
         <<"************************\n";
     //Wait for the user to press 'Enter'
     cin.ignore();
@@ -82,12 +84,14 @@ void menu(){
     
 }
 
-//Load a previous game function
+//Function to Load Previous Game
 void ldGame(){
     //Must load the name of the player
 }
 
-//Create a new game function
+//Function to Create New Game
+    //Introduction to game and game play
+    //Player enters their name
 void newGame(string name){
     //Opening Dialogue... Information about game play
     cout<<endl<<"*****************************************\n"
@@ -100,23 +104,28 @@ void newGame(string name){
     cout<<"Here is some information about your starter pokemon.\n"
           "Over time your pokemon will grow stronger the more\n"
           "you successfully defeat other foes in battle. You will\n"
-          "be able to choose which [attack] to use in battle, and may\n"
+          "be able to [attack] your foe while in battle, and may\n"
           "acquire new attacks after you gather enough experience.\n\n"
           "Press [enter] to continue..."<<endl;
     cin.ignore();
-    cout<<"You will face many foes in your journey. Stronger foes with\n"
+    cout<<"You will face many foes in your journey. Strong foes with\n"
           "higher [hp] values will yield more [exp]erience for your pokemon.\n"
-          "If your pokemon dies on the field of battle your pokemon will lose a [lvl]...\n\n"
+          "If your pokemon dies on the field of battle your pokemon will lose a level...\n\n"
           "Press [enter] to continue..."<<endl;
     cin.ignore();
     cout<<"Be careful not to face creatures too powerful to defeat.\n"
           "Remember, you can always [Run] at any time in battle. If you\n"
           "choose to [Run], you will not gain any experience for that fight.\n\n"
           "Press [enter] to continue..."<<endl;
-    cout<<endl<<name<<", you are now ready to become a trainer\n"
+    cin.ignore();
+    cout<<endl<<name<<", you are now ready to become a Pokemon trainer\n"
                 "and embark on your journey into the land of pokemon!"<<endl;
 }
 
+//Function to Save Previous Game
+//Saves:
+    //Name
+    //Pokemon level
 void savGame(){
     //Must save the name of the player
 }
