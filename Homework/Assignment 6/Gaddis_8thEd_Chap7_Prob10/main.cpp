@@ -26,6 +26,8 @@ int main(int argc, char** argv) {
                          'C', 'C', 'A', 'D', 'B'};
     //Initialize the User's Array
     char userKey[SIZE] = {};
+    int nWrong, nRight;  //Number of wrong answers / Number of right answers
+    
     
     //Prompt the User for input
     cout<<"Please enter your responses for the following questions:"<<endl;
@@ -34,10 +36,25 @@ int main(int argc, char** argv) {
         cout<<(count+1)<<".";
         cin>>userKey[count];
     }
-    
-    
+    //Compare userKey and ansKey
+    //Display the incorrect answers and their corresponding number 
+    for(int count=0; count < SIZE; count++){
+        if(ansKey[count]!= userKey[count]){
+            cout<<"You answered question "<<(count+1)<<" incorrectly."<<endl;
+            cout<<"Your    answer: "<<userKey[count]<<endl;
+            cout<<"Correct answer: "<<ansKey[count]<<endl;
+            nWrong++;
+        } else nRight++;
+    }
+        
+    //Indicate whether student passed the exam or failed
+    if(nWrong <= 5){
+        cout<<endl<<"You passed the exam!"<<endl;
+    } else cout<<endl<<"You did not pass the exam!"<<endl;
+    //Display the total number of correct answers
+    cout<<"You got "<<nWrong<<" answers incorrect."<<endl;
+    cout<<"You got "<<nRight<<" answers right."<<endl;
     
     //Exit Stage Right!
     return 0;
 }
-
