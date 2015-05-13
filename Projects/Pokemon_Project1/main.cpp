@@ -23,6 +23,9 @@ void ldGame();
 void menu();
 void newGame(string);
 void savGame();
+int battle(int, int, int, int, string, string);   
+    //Return Experience Point attained
+    //Return information about pokemon
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
@@ -60,7 +63,7 @@ int main(int argc, char** argv) {
     } while(menu);
     
     //Start battling...
-    
+    battle(pmExp, pmHp, pmStrng, pmLvl, name, pmName);
     
     
     
@@ -101,7 +104,9 @@ void newGame(string name){
     cin.ignore();
     getline (cin, name);
     cout<<endl<<"Awesome name, "<<name<<"!"<<endl;
-    cout<<"Here is some information about your starter pokemon.\n"
+    cout<<"Here is some information about pokemon.\n"
+    //Eventually insert information about the starter Pokemon?
+    //Would this be useful? Maybe some stats? 
           "Over time your pokemon will grow stronger the more\n"
           "you successfully defeat other foes in battle. You will\n"
           "be able to [attack] your foe while in battle, and may\n"
@@ -128,4 +133,35 @@ void newGame(string name){
     //Pokemon level
 void savGame(){
     //Must save the name of the player
+}
+
+//Function to initiate battle sequence...
+int battle(int pmExp, int pmHp, int pmStrng, int pmLvl, string name, string pmName){
+    //Initialize random number seed
+    srand(static_cast<unsigned int>(time(0)));
+    //Declare Variables
+    int     fHp,    //Foe's HP
+            fStrng, //Foe's Strength Value
+            fLvl;   //Foe's Level
+    if((pmLvl >= 1)&&(pmLvl <= 5)){
+        fLvl = rand()%5+1;
+        fHp  = (rand()%5+1)*fLvl;
+        fStrng = (rand()%5+1)*fLvl;
+    } else if ((pmLvl >=6)&&(pmLvl <=10)){
+        
+    }
+    
+    //Output Battle Sequence...
+    cout<<"You've encountered a foe!"<<endl;
+    //Output Enemy Stats!
+    cout<<endl<<"Enemy level: "<<fLvl<<endl;
+    cout<<"Enemy HP      : "<<fHp<<endl;
+    cout<<"Enemy Strength: "<<fStrng<<endl;
+    
+    do{
+                
+    } while (fHp > 0);
+    
+    //Exit Stage Right!
+    return 0;
 }
