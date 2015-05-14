@@ -20,7 +20,7 @@ using namespace std;
 //Function Prototypes
 void gameStr();
 void ldGame();
-void menu();
+void btlMenu();
 void newGame(string);
 void savGame();
 int battle(int, int, int, int, string, string);   
@@ -62,8 +62,10 @@ int main(int argc, char** argv) {
         }
     } while(menu);
     
-    //Start battling...
-    battle(pmExp, pmHp, pmStrng, pmLvl, name, pmName);
+    //Start the in-game menu...
+    btlMenu();
+    
+    //battle(pmExp, pmHp, pmStrng, pmLvl, name, pmName);
     
     
     
@@ -83,7 +85,19 @@ void gameStr(){
 }
 
 //Function for menu choice
-void menu(){
+void btlMenu(battle(int pmExp, int pmHp, int pmStrng, int pmLvl, string name, string pmName)){
+    //Declare Variables
+    int userSel = 0;
+    cout<<"what would you like to do?"<<endl;
+    cout<<"[1.] Battle a Pokemon"<<endl;
+    cout<<"[2.] Save the game"<<endl;
+    cout<<"[3.] Exit the game"<<endl;
+    switch (userSel){
+        case 1: battle(); break;
+        case 2: savGame(); break;
+        case 3: exit(0); break;
+    }
+    
     
 }
 
@@ -113,7 +127,7 @@ void newGame(string name){
           "acquire new attacks after you gather enough experience.\n\n"
           "Press [enter] to continue..."<<endl;
     cin.ignore();
-    cout<<"You will face many foes in your journey. Strong foes with\n"
+    cout<<"You will face many foes on your journey. Strong foes with\n"
           "higher [hp] values will yield more [exp]erience for your pokemon.\n"
           "If your pokemon dies on the field of battle your pokemon will lose a level...\n\n"
           "Press [enter] to continue..."<<endl;
