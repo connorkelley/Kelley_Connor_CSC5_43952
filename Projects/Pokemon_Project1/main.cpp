@@ -143,23 +143,25 @@ int battle(int pmExp, int pmHp, int pmStrng, int pmLvl, string name, string pmNa
     int     fHp,    //Foe's HP
             fStrng, //Foe's Strength Value
             fLvl;   //Foe's Level
+    //Calculate the enemy's level,hit points, and attack strength
     if((pmLvl >= 1)&&(pmLvl <= 5)){
         fLvl = rand()%5+1;
         fHp  = (rand()%5+1)*fLvl;
         fStrng = (rand()%5+1)*fLvl;
     } else if ((pmLvl >=6)&&(pmLvl <=10)){
-        
+        fLvl = rand()%5+1;
+        fHp  = (rand()%5+1)*fLvl;
+        fStrng = (rand()%5+1)*fLvl;
     }
-    
     //Output Battle Sequence...
     cout<<"You've encountered a foe!"<<endl;
     //Output Enemy Stats!
     cout<<endl<<"Enemy level: "<<fLvl<<endl;
     cout<<"Enemy HP      : "<<fHp<<endl;
     cout<<"Enemy Strength: "<<fStrng<<endl;
-    
     do{
-                
+        cout<<"What would you like to do?"<<endl;
+        
     } while (fHp > 0);
     
     //Exit Stage Right!
