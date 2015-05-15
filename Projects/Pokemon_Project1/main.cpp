@@ -21,8 +21,8 @@ using namespace std;
 void gameStr();
 void ldGame();
 void btlMenu();
-void newGame(string);
-void savGame();
+void newGame(string, string);
+void savGame(int, int, int, int, string, string);
 int battle(int, int, int, int, string, string);   
     //Return Experience Point attained
     //Return information about pokemon
@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
     gameStr();
     //Game Menu to load or start new game    
     do{   
-        cout<<"*****     MENU     *****"<<endl;
+        cout<<"********     MENU     *********"<<endl;
         cout<<"Enter 1 to load a previous game"<<endl;
         cout<<"Enter 2 to start a new game"<<endl;
         cin>>userSel;     
@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
             ldGame();
             menu = false;
         } else if (userSel == 2){
-            newGame(name);
+            newGame(name, pmName);
             menu = false;
         } else {
             cout<<"You did not enter a valid menu selection"<<endl;
@@ -63,11 +63,26 @@ int main(int argc, char** argv) {
     } while(menu);
     
     //Start the in-game menu...
-    btlMenu();
-    
-    //battle(pmExp, pmHp, pmStrng, pmLvl, name, pmName);
-    
-    
+    char choice = 0;
+    cout<<"what would you like to do?"<<endl;
+    cout<<"[1.] Battle a Pokemon"<<endl;
+    cout<<"[2.] Save the game"<<endl;
+    cout<<"[3.] Exit the game"<<endl;
+    cin.ignore();
+    switch (choice){
+        case '1':{
+            battle(pmExp, pmHp, pmStrng, pmLvl, name, pmName); 
+            break;
+        }
+        case '2':{
+            savGame(pmExp, pmHp, pmStrng, pmLvl, name, pmName); 
+            break;
+        }
+        case '3':{
+            exit(0); 
+            break;
+        }
+    }
     
     //Exit Stage Right!
     return 0;
@@ -84,23 +99,6 @@ void gameStr(){
     cin.ignore();
 }
 
-//Function for menu choice
-void btlMenu(battle(int pmExp, int pmHp, int pmStrng, int pmLvl, string name, string pmName)){
-    //Declare Variables
-    int userSel = 0;
-    cout<<"what would you like to do?"<<endl;
-    cout<<"[1.] Battle a Pokemon"<<endl;
-    cout<<"[2.] Save the game"<<endl;
-    cout<<"[3.] Exit the game"<<endl;
-    switch (userSel){
-        case 1: battle(); break;
-        case 2: savGame(); break;
-        case 3: exit(0); break;
-    }
-    
-    
-}
-
 //Function to Load Previous Game
 void ldGame(){
     //Must load the name of the player
@@ -109,7 +107,7 @@ void ldGame(){
 //Function to Create New Game
     //Introduction to game and game play
     //Player enters their name
-void newGame(string name){
+void newGame(string name, string pmName){
     //Opening Dialogue... Information about game play
     cout<<endl<<"*****************************************\n"
                 "Welcome to the wonderful game of pokemon!"<<endl;
@@ -117,6 +115,9 @@ void newGame(string name){
     cout<<"Start by entering your name: ";
     cin.ignore();
     getline (cin, name);
+    cout<<"Next, enter a name for your pokemon: ";
+    cin.ignore();
+    getline (cin, pmName);
     cout<<endl<<"Awesome name, "<<name<<"!"<<endl;
     cout<<"Here is some information about pokemon.\n"
     //Eventually insert information about the starter Pokemon?
@@ -145,8 +146,19 @@ void newGame(string name){
 //Saves:
     //Name
     //Pokemon level
-void savGame(){
+void savGame(int pmExp, int pmHp, int pmStrng, int pmLvl, string name, string pmName){
     //Must save the name of the player
+    ofstream myGame ("SavedPokemonGame.txt");
+    myGame<<name;
+    myGame<<pmName;
+    myGame<<name;
+    myGame<<name;
+    myGame<<name;
+    myGame<<name;
+    myGame<<name;
+    myGame<<name;
+    myGame<<name;
+    
 }
 
 //Function to initiate battle sequence...
