@@ -19,12 +19,12 @@ using namespace std;
 
 //Function Prototypes
 void gameStr();
-void ldGame();
+int ldGame(int, int, int);
 void btlMenu();
-void newGame(string, string);
-void savGame(int, int, int, int, string, string);
-int battle(int, int, int, int, string, string);   
-    //Return Experience Point attained
+void newGame(string);
+void savGame(int, int, int);
+int battle(int, int, int);   
+    //Return Experience Points attained
     //Return information about pokemon
 
 //Execution Begins Here!
@@ -32,16 +32,12 @@ int main(int argc, char** argv) {
     //Declare Player Variables
     int     pmExp   = 0,  //Pokemon Experience
             pmHp    = 100,//Pokemon Hit points
-            pmStrng = 10, //Pokemon Strength
             pmLvl   = 1;  //Pokemon Level
-    string  name,   //Player Name
-            pmName; //Pokemon Name
-    //Declare Monster Variables
-    int     monExp,
-            monLvl;
+    string  name;   //Player Name
     //Other Variables
     int userSel;        
-    bool menu = true;
+    bool menu   = true,
+         inGame = true;
     
     //Start Game
     gameStr();
@@ -52,38 +48,41 @@ int main(int argc, char** argv) {
         cout<<"Enter 2 to start a new game"<<endl;
         cin>>userSel;     
         if (userSel == 1){
-            ldGame();
+            ldGame(pmExp, pmHp, pmLvl);
             menu = false;
         } else if (userSel == 2){
-            newGame(name, pmName);
+            newGame(name);
             menu = false;
         } else {
             cout<<"You did not enter a valid menu selection"<<endl;
         }
     } while(menu);
-    
+        
     //Start the in-game menu...
-    char choice = 0;
-    cout<<"what would you like to do?"<<endl;
+    while(inGame){
+    char choice;
+    cout<<"What would you like to do?"<<endl;
     cout<<"[1.] Battle a Pokemon"<<endl;
     cout<<"[2.] Save the game"<<endl;
     cout<<"[3.] Exit the game"<<endl;
-    cin.ignore();
+    cin>>choice;
     switch (choice){
         case '1':{
-            battle(pmExp, pmHp, pmStrng, pmLvl, name, pmName); 
+            battle(pmExp, pmHp, pmLvl); 
             break;
         }
         case '2':{
-            savGame(pmExp, pmHp, pmStrng, pmLvl, name, pmName); 
+            savGame(pmExp, pmHp, pmLvl); 
+            cout<<"Your game has saved!"<<endl;
             break;
         }
         case '3':{
-            exit(0); 
+            exit(0);
+            inGame = false;
             break;
         }
     }
-    
+    }
     //Exit Stage Right!
     return 0;
 }
@@ -100,24 +99,27 @@ void gameStr(){
 }
 
 //Function to Load Previous Game
-void ldGame(){
+int ldGame(int pmExp, int pmHp, int pmLvl){
     //Must load the name of the player
+    ifstream inFile;
+    inFile.open("savedGame.txt");
+    inFile>>pmExp>>pmHp>>pmLvl;
+    inFile.close();
+    return pmExp, pmHp, pmLvl;
 }
 
 //Function to Create New Game
     //Introduction to game and game play
     //Player enters their name
-void newGame(string name, string pmName){
+void newGame(string name){
     //Opening Dialogue... Information about game play
     cout<<endl<<"*****************************************\n"
                 "Welcome to the wonderful game of pokemon!"<<endl;
+    
     //Collect the name of the player
     cout<<"Start by entering your name: ";
     cin.ignore();
-    getline (cin, name);
-    cout<<"Next, enter a name for your pokemon: ";
-    cin.ignore();
-    getline (cin, pmName);
+    getline(cin, name);
     cout<<endl<<"Awesome name, "<<name<<"!"<<endl;
     cout<<"Here is some information about pokemon.\n"
     //Eventually insert information about the starter Pokemon?
@@ -146,50 +148,90 @@ void newGame(string name, string pmName){
 //Saves:
     //Name
     //Pokemon level
-void savGame(int pmExp, int pmHp, int pmStrng, int pmLvl, string name, string pmName){
-    //Must save the name of the player
-    ofstream myGame ("SavedPokemonGame.txt");
-    myGame<<name;
-    myGame<<pmName;
-    myGame<<name;
-    myGame<<name;
-    myGame<<name;
-    myGame<<name;
-    myGame<<name;
-    myGame<<name;
-    myGame<<name;
-    
+void savGame(int pmExp, int pmHp, int pmLvl){
+    ofstream myGame;
+    myGame.open("savedGame.txt");
+    myGame<<pmExp<<pmHp<<pmLvl;
+    myGame.close();
 }
 
 //Function to initiate battle sequence...
-int battle(int pmExp, int pmHp, int pmStrng, int pmLvl, string name, string pmName){
+int battle(int pmExp, int pmHp, int pmLvl){
     //Initialize random number seed
     srand(static_cast<unsigned int>(time(0)));
     //Declare Variables
     int     fHp,    //Foe's HP
             fStrng, //Foe's Strength Value
-            fLvl;   //Foe's Level
-    //Calculate the enemy's level,hit points, and attack strength
+            fLvl,   //Foe's Level
+            pmStrng;//Pokemon Strength   
+    
+    //Calculate the enemy's level,hit points
     if((pmLvl >= 1)&&(pmLvl <= 5)){
         fLvl = rand()%5+1;
-        fHp  = (rand()%5+1)*fLvl;
-        fStrng = (rand()%5+1)*fLvl;
+        fHp  = (rand()%100+50)*(fLvl);
     } else if ((pmLvl >=6)&&(pmLvl <=10)){
-        fLvl = rand()%5+1;
-        fHp  = (rand()%5+1)*fLvl;
-        fStrng = (rand()%5+1)*fLvl;
+        fLvl = rand()%10+5;
+        fHp  = (rand()%200+1)*fLvl;
     }
+    
     //Output Battle Sequence...
-    cout<<"You've encountered a foe!"<<endl;
+    cout<<endl<<"You've encountered a foe!"<<endl;
     //Output Enemy Stats!
-    cout<<endl<<"Enemy level: "<<fLvl<<endl;
+    cout<<"Enemy level   : "<<fLvl<<endl;
     cout<<"Enemy HP      : "<<fHp<<endl;
     cout<<"Enemy Strength: "<<fStrng<<endl;
     do{
+        char select;
+        fStrng = rand()%10+1;
+        pmStrng= rand()%10+1;
         cout<<"What would you like to do?"<<endl;
-        
-    } while (fHp > 0);
+        cout<<"[1.] Attack"<<endl;
+        cout<<"[2.] Run   "<<endl;     
+        cin>>select;
+        switch (select){
+            case '1':{
+                //Attack the enemy!
+                fHp -= pmStrng;
+                cout<<"Success! You attack the enemy."<<endl;
+                cout<<"You hit the enemy for "<<pmStrng<<" damage!"<<endl;
+                cout<<"The enemy HP is now at: "<<fHp<<endl<<endl;
+                cout<<"The enemy attacks you!"<<endl<<"You get hit for "<<fStrng<<" damage."<<endl;
+                pmHp -= fStrng;
+                cout<<"Your HP is now at: "<<pmHp<<endl;
+                break;
+            }
+            case '2':{
+                int randNum = rand()%10+1;
+                if(randNum > 5){
+                    cout<<"You ran away safely..."<<endl;
+                    fHp = -1;
+                } else {
+                    cout<<"Oh no! You failed to run away!!"<<endl;
+                    cout<<"The enemy attacks you! You get hit for "<<fStrng<<" damage."<<endl;
+                    pmHp -= fStrng;
+                    cout<<"Your HP is now at: "<<pmHp<<endl;
+                }
+                break;
+            }
+        }
+    } while ((fHp > 0)&&(pmHp > 0));
+    //Determine win or lose
+    if(pmHp > 0){
+        cout<<"You lost the battle. You lose a level!"<<endl;
+        pmLvl--;
+        cout<<"Your current level is now at "<<pmLvl<<endl;
+    } else if (fHp > 0){
+        cout<<"CONGRATS! YOU WON THE BATTLE!"<<endl;
+        pmExp += rand()%100+75;
+        cout<<"You gained "<<pmExp<<" for winning!"<<endl;
+    }
     
+    //Determine Level w/ experience
+    if(pmExp >= 100){
+        pmLvl++;
+        pmHp += 100;
+    }
+        
     //Exit Stage Right!
-    return 0;
+    return pmExp, pmHp, pmLvl;
 }
