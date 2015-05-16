@@ -100,7 +100,6 @@ void gameStr(){
 
 //Function to Load Previous Game
 int ldGame(int pmExp, int pmHp, int pmLvl){
-    //Must load the name of the player
     ifstream inFile;
     inFile.open("savedGame.txt");
     inFile>>pmExp>>pmHp>>pmLvl;
@@ -164,21 +163,30 @@ int battle(int pmExp, int pmHp, int pmLvl){
             fStrng, //Foe's Strength Value
             fLvl,   //Foe's Level
             pmStrng;//Pokemon Strength   
+    const int SIZE = 5;
+    int hpAry[SIZE] = {};
+    int randNum = rand()%100+75; 
     
-    //Calculate the enemy's level,hit points
+    //Calculate the enemy's level
     if((pmLvl >= 1)&&(pmLvl <= 5)){
         fLvl = rand()%5+1;
-        fHp  = (rand()%100+50)*(fLvl);
     } else if ((pmLvl >=6)&&(pmLvl <=10)){
         fLvl = rand()%10+5;
-        fHp  = (rand()%200+1)*fLvl;
+    }
+    
+    //random array to calculate enemy health
+    for(int count = 1; count <= SIZE; count ++){
+        hpAry[count] += (randNum*count);
+    }
+    for(int count = 0; count < SIZE; count++){
+        cout<<hpAry[count]<<" ";
     }
     
     //Output Battle Sequence...
     cout<<endl<<"You've encountered a foe!"<<endl;
     //Output Enemy Stats!
     cout<<"Enemy level   : "<<fLvl<<endl;
-    cout<<"Enemy HP      : "<<fHp<<endl;
+    cout<<"Enemy HP      : "<<hpAry[rand()%4]<<endl;
     cout<<"Enemy Strength: "<<fStrng<<endl;
     do{
         char select;
