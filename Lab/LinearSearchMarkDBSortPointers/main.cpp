@@ -64,7 +64,7 @@ int linSrch(int *a,int n,int val){
 void markSrt(int *a,int *indx,int n){
     for(int pos=0;pos<n-1;pos++){
         for(int lst=pos+1;lst<n;lst++){
-            if(a[indx[pos]]>(a[indx[lst]])){
+            if((*(a+*(indx+pos))) > (*(a+*(indx+lst)))){
                 int temp=*(indx+pos);
                 *(indx+pos)=*(indx+lst);
                 *(indx+lst)=temp;
@@ -85,7 +85,7 @@ void prntAry(int *a,int n,int perLine){
 void prntAry(int *a,int *indx,int n,int perLine){
     cout<<endl;
     for(int i=0;i<n;i++){
-        cout<<*(a[indx[i]])<<" ";
+        cout<<*(a+*(indx+i))<<" ";
         if(i%perLine==perLine-1)cout<<endl;
     }
     cout<<endl;
