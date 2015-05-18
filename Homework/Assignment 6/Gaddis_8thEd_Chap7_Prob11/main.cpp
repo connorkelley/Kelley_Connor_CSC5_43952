@@ -26,8 +26,8 @@ int main(int argc, char** argv) {
     ifstream usrFile ("C:/Users/Connor/Documents/CSC 5 - C++/Kelley_Connor_CSC5_43952/Homework/Assignment 6/StudentAnswers.txt");
     int count   = 0,
         correct = 0,
-        wrong   = 0,
-        grade = 0;
+        wrong   = 0;
+    float grade;
     
     //Read the answer key into an array
     while ((! ansFile.eof())&&(ansFile>>ansKey[count])){ //While the end of the file IS NOT reached
@@ -50,16 +50,19 @@ int main(int argc, char** argv) {
             cout<<"You missed question "<<count<<endl;
             cout<<"Your    answer: "<<usrKey[count]<<endl;
             cout<<"Correct answer: "<<ansKey[count]<<endl;
-        }     
+        }
+        
     }
-    cout<<"Correct Answers: "<<correct<<endl;
+    cout<<endl<<"Correct Answers: "<<correct<<endl;
     cout<<"Wrong   Answers: "<<wrong<<endl;
     
     //Calculate if student passed or failed the exam
-    grade = correct / count;
-    if(grade > 0.70f){
+    grade = (5 / 20.0f);
+    
+    if(grade > 0.70){
         cout<<"You passed the exam!"<<endl;
     } else cout<<"YOU FAILED!"<<endl;
+    cout<<"Percent answered correctly: "<<grade*100<<"%";
     
     //Exit Stage Right!
     return 0;
