@@ -1,7 +1,7 @@
 /* 
  * File:   main.cpp
  * Author: Connor Kelley
- * Created on May 6, 2015, 9:01 AM
+ * Created on May 18, 2015, 8:16 AM
  * Purpose: Example Linear Search/Mark Sort
  */
 
@@ -16,7 +16,8 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-void fillAray(int [], int);
+void fillAray(int [], int[], int);
+void prntAry(int [], int[], int, int);
 void prntAry(int [], int, int);
 int linSrch(int [], int, int);
 void markSrt(int [], int);
@@ -28,8 +29,11 @@ int main(int argc, char** argv) {
     //Declare Variables
     const int SIZE = 100;
     int array[SIZE];
+    int index[SIZE];
     //Fill the Array
     fillAray(array, SIZE);
+    //Print the Array
+    prntAry(array, SIZE, 10);
     //Print the Array
     prntAry(array, SIZE, 10);
     //Sort the Array

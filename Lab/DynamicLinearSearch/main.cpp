@@ -1,7 +1,7 @@
 /* 
  * File:   main.cpp
  * Author: Connor Kelley
- * Created on May 6, 2015, 9:01 AM
+ * Created on May 18, 2015, 8:00 AM
  * Purpose: Example Linear Search/Mark Sort
  */
 
@@ -16,7 +16,7 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-void fillAray(int [], int);
+int *fillAray(int);
 void prntAry(int [], int, int);
 int linSrch(int [], int, int);
 void markSrt(int [], int);
@@ -26,31 +26,38 @@ int main(int argc, char** argv) {
     //Generate the random numbers for array
     srand(static_cast<unsigned int>(time(0)));
     //Declare Variables
-    const int SIZE = 100;
-    int array[SIZE];
+    int SIZE = 100;
+    
     //Fill the Array
-    fillAray(array, SIZE);
+    int *array = fillAray(SIZE);
     //Print the Array
     prntAry(array, SIZE, 10);
     //Sort the Array
     markSrt(array, SIZE);
     //Print the Array again
     prntAry(array, SIZE, 10);
-    
     //Find Something (Perform a search)
     int rndVal=rand()%90+10;
     cout<<endl<<rndVal<<" was found at position "<<linSrch(array, SIZE, rndVal)<<endl;
+    
+    //Deallocate memory
+    delete []array;
     
     //Exit Stage Right!
     return 0;
 }
 
 
-void fillAray(int a[], int n){
+int *fillAray(int n){
+    //Allocate Memory
+    int *a=new int[n];
+    //Fill array
     for(int i=0;i<n;i++){
         a[i]=rand()%90+10; //2-Digit Numbers
     }
+    return;
 }
+
 void prntAry(int a[], int n, int perLine){
     cout<<endl;
     for(int i=0;i<n;i++){
