@@ -39,26 +39,10 @@ int main(int argc, char** argv) {
     int userSel;        
     bool menu   = true,
          inGame = true;
+    char choice;
     
     //Start Game
     gameStr();
-    
-    //Calculate HP based on level...
-    //Then I would need to pass the array to 3-4 functions to save, load, and use it in battle...
-        //Could get overly complicated
-    //const int SIZE = 5;
-    //int pmInfo[SIZE][2] = {};
-    //Use this array for something... Not sure yet how practical this is
-    //for(int x = 0; x < SIZE; x++){
-    //    for(int y = 0; y < 2; y++){
-    //        pmInfo[x][y] = 100*(x+1);
-    //    }
-    //}
-    //for(int x = 0; x < SIZE; x++){
-    //    for(int y = 0; y < 2; y++){
-    //        cout<<pmInfo[x][y]<<endl;
-    //    }
-    //}
     
     //Game Menu to load or start new game    
     do{   
@@ -82,10 +66,10 @@ int main(int argc, char** argv) {
     if(pmExp <= 100){
         pmLvl = 1;
         pmHp  = 100;            
-    } else if ((pmExp >= 500)&&(pmExp > 100)){
+    } else if ((pmExp <= 500)&&(pmExp > 100)){
         pmLvl = 2;
         pmHp  = 200;
-    } else if (pmExp >= 1000){
+    } else if ((pmExp <= 1000)&&(pmExp > 500)){
         pmLvl == 3;
     } else if (pmExp >= 1500){
         pmLvl == 4;
@@ -94,10 +78,9 @@ int main(int argc, char** argv) {
     } else if (pmExp >= 3600){
         pmLvl == 6;
     }
-    cout<<pmExp<<endl;    
+    
     //Start the in-game menu...
     while(inGame){
-        char choice;
         cout<<endl<<name<<", what would you like to do?"<<endl;
         cout<<"[1.] Battle a Pokemon"<<endl;
         cout<<"[2.] Save the game"<<endl;
