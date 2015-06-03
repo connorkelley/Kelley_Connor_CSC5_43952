@@ -19,8 +19,6 @@ void savGame(int[][]);
 //Execution Begins Here!
 int main(int argc, char** argv) {
     //Declare Variables
-    int plyrDta[][];
-    
     
     //Exit Stage Right!
     return 0;

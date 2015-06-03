@@ -6,6 +6,21 @@
  *          for the game of Pokemon -- a turn based strategy battle game
  */
 
+/* Project Requirements: 
+ * Minimum of 250 lines of code
+ * Functions
+ * One Dimensional Array
+ * Two Dimensional Array
+ * Pass arrays between functions
+ * Function Pass by Value
+ * Function Pass by reference
+ * Defaulted Parameters
+ * Returning primitive data types
+ * Output format
+ * Read and write to file
+ * Sorting game players and searching 
+ */
+
 //System Libraries
 #include <cstdlib>  //c standard 
 #include <iostream> //input output stream 
@@ -52,12 +67,15 @@ int main(int argc, char** argv) {
         cout<<"*******************************"<<endl;
         cin>>userSel;     
         if (userSel == 1){
+            //Load an already saved game from a file into the game
             ldGame(name, pmExp);
             menu = false;
         } else if (userSel == 2){
+            //Initiate the new game sequence to gather player name and introduce game
             newGame(name);
             menu = false;
         } else {
+            //Catch user errors
             cout<<"You did not enter a valid menu selection"<<endl;
         }
     } while(menu);
@@ -70,13 +88,17 @@ int main(int argc, char** argv) {
         pmLvl = 2;
         pmHp  = 200;
     } else if ((pmExp <= 1000)&&(pmExp > 500)){
-        pmLvl == 3;
+        pmLvl = 3;
+        pmHp  = 300;
     } else if (pmExp >= 1500){
-        pmLvl == 4;
+        pmLvl = 4;
+        pmHp  = 400;
     } else if (pmExp >= 2500){
-        pmLvl == 5;
+        pmLvl = 5;
+        pmHp  = 500;
     } else if (pmExp >= 3600){
-        pmLvl == 6;
+        pmLvl = 6;
+        pmHp  = 600;
     }
     
     //Start the in-game menu...
@@ -187,15 +209,23 @@ int battle(float &pmExp, int pmHp, int pmLvl){
     fStrng = rand()%10+1;
     pmStrng= rand()%10+1;
     
-    //Calculate the enemy's level
-    if((pmLvl >= 1)&&(pmLvl <= 5)){
-        fLvl = rand()%5+1;
+    //Calculate the enemy's level and hit points    
+    if((pmLvl == 1)||(pmLvl == 2)){
+        fLvl = rand()%3+1;
         fHp  = rand()%100+75;
-    } else if ((pmLvl >=6)&&(pmLvl <=10)){
-        fLvl = rand()%10+5;
-        fHp  = rand()%200+150;
+    } else if ((pmLvl == 3)||(pmLvl == 4)){
+        fLvl = rand()%3+5;
+        fHp  = rand()%200+125;
+    } else if ((pmLvl == 5)||(pmLvl == 6)){
+        fLvl = rand()%5+7;
+        fHp  = rand()%300+275;
+    } else if ((pmLvl == 7)||(pmLvl == 8)){
+        fLvl = rand()%7+9;
+        fHp  = rand()%400+365;
+    } else if ((pmLvl == 9)||(pmLvl == 10)){
+        fLvl = rand()%9+11;
+        fHp  = rand()%500+455;
     }
-    
     
     //Output Battle Sequence...
     cout<<endl<<"You've encountered a foe!..."<<endl;
@@ -251,7 +281,7 @@ int battle(float &pmExp, int pmHp, int pmLvl){
         } else cout<<"Your level is too low to lose a level!"<<endl;
     } else if ((fHp <= 0)&&(pmHp >= 0)&&(fHp != -99)){
         cout<<"CONGRATS! YOU WON THE BATTLE!"<<endl;
-        pmExp += (rand()%100+75)*fLvl;
+        pmExp += (rand()%100+75)*(1/2*pmLvl);
         cout<<"You gained "<<pmExp<<" experience for winning!"<<endl;
     } else if (fHp = -99){
         cout<<"Because you ran away from combat,"<<endl;
