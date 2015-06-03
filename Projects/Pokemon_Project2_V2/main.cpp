@@ -7,17 +7,17 @@
  */
 
 /* Project Requirements: 
- * Minimum of 250 lines of code
- * Functions
+ * Minimum of 250 lines of code     X
+ * Functions                        X
  * One Dimensional Array
- * Two Dimensional Array
- * Pass arrays between functions
- * Function Pass by Value
- * Function Pass by reference
- * Defaulted Parameters
- * Returning primitive data types
- * Output format
- * Read and write to file
+ * Two Dimensional Array            X
+ * Pass arrays between functions    
+ * Function Pass by Value           X
+ * Function Pass by reference       X
+ * Defaulted Parameters             X
+ * Returning primitive data types   X
+ * Output format    
+ * Read and write to file           X
  * Sorting game players and searching 
  */
 
@@ -47,10 +47,12 @@ int battle(float&, int, int);
 int main(int argc, char** argv) {
     //Declare Player Variables
     float   pmExp   = 0;  //Pokemon Experience
-    int     pmLvl   = 1, 
-            pmHp    = 0;
+    int     pmLvl   = 1,  //Pokemon Level
+            pmHp    = 0,  //Pokemon Hit Points
+            pmStrng = 0;  //Pokemon Strength
     string  name;   //Player Name
-    //Other Variables
+    
+    //Menu Variables
     int userSel;        
     bool menu   = true,
          inGame = true;
@@ -81,26 +83,41 @@ int main(int argc, char** argv) {
     } while(menu);
     
     //Calculate Level -- based on experience points gathered
-    if(pmExp <= 100){
-        pmLvl = 1;
-        pmHp  = 100;            
-    } else if ((pmExp <= 500)&&(pmExp > 100)){
-        pmLvl = 2;
-        pmHp  = 200;
-    } else if ((pmExp <= 1000)&&(pmExp > 500)){
-        pmLvl = 3;
-        pmHp  = 300;
-    } else if (pmExp >= 1500){
-        pmLvl = 4;
-        pmHp  = 400;
-    } else if (pmExp >= 2500){
-        pmLvl = 5;
-        pmHp  = 500;
-    } else if (pmExp >= 3600){
-        pmLvl = 6;
-        pmHp  = 600;
-    }
+    //Level then determines the hit points and attack power respectively
     
+    //Pass this to the battle function instead of declaring it in main then passing single variables 
+    //-- pass the whole thing
+    const int ROWS = 10;    //Row total of the array
+    const int COLS = 3;     //Column total of the array
+                            //  --Includes the Level, Hit Points(HP), and Attack Power
+    int player[ROWS][COLS] =   {{1, 100, rand()%10+1},
+                                {2, 200, rand()%15+5},
+                                {3, 300, rand()%20+10},
+                                {4, 400, rand()%25+15},
+                                {5, 500, rand()%30+20},
+                                {6, 600, rand()%35+25},
+                                {7, 700, rand()%40+30},
+                                {8, 800, rand()%45+35},
+                                {9, 900, rand()%50+40},
+                                {10, 1000, rand()%55+45}};
+    
+    //Determine level of the player based on the accumulated experience
+    if(pmExp <= 100){
+        pmLvl   = player[0][0]; 
+        pmHp    = player[0][1];
+        pmStrng = player[0][2];
+    } else if ((pmExp <= 500)&&(pmExp > 100)){
+        
+    } else if ((pmExp <= 1000)&&(pmExp > 500)){
+        
+    } else if (pmExp >= 1500){
+        
+    } else if (pmExp >= 2500){
+        
+    } else if (pmExp >= 3600){
+        
+    }
+
     //Start the in-game menu...
     while(inGame){
         cout<<endl<<name<<", what would you like to do?"<<endl;
@@ -110,7 +127,7 @@ int main(int argc, char** argv) {
         cin>>choice;
         switch (choice){
             case '1':{
-                battle(pmExp, pmHp, pmLvl); 
+                battle(pmExp, pmHp, pmLvl, pmStrng); 
                 break;
             }
             case '2':{
@@ -198,16 +215,16 @@ void newGame(string &name){
 }
 
 //Function to initiate battle sequence...
-int battle(float &pmExp, int pmHp, int pmLvl){
+int battle(float &pmExp, int pmHp, int pmLvl, int pmStrng){
     //Initialize random number seed
     srand(static_cast<unsigned int>(time(0)));
     //Declare Variables -- Get them ready for battle!
     int     fHp,    //Foe's HP
             fStrng, //Foe's Strength Value
             fLvl,   //Foe's Level
-            pmStrng;//Pokemon Strength   
-    fStrng = rand()%10+1;
-    pmStrng= rand()%10+1;
+            newExp; //New Experience points earned
+            fStrng = rand()%10+1; //Calculate how strong the foes attacks are
+            pmStrng= rand()%10+1; //Calculate how strong the players attacks are
     
     //Calculate the enemy's level and hit points    
     if((pmLvl == 1)||(pmLvl == 2)){
@@ -281,8 +298,9 @@ int battle(float &pmExp, int pmHp, int pmLvl){
         } else cout<<"Your level is too low to lose a level!"<<endl;
     } else if ((fHp <= 0)&&(pmHp >= 0)&&(fHp != -99)){
         cout<<"CONGRATS! YOU WON THE BATTLE!"<<endl;
-        pmExp += (rand()%100+75)*(1/2*pmLvl);
-        cout<<"You gained "<<pmExp<<" experience for winning!"<<endl;
+        newExp = (rand()%100+75)*(*pmLvl);
+        pmExp += newExp;
+        cout<<"You gained "<<newExp<<" experience for winning!"<<endl;
     } else if (fHp = -99){
         cout<<"Because you ran away from combat,"<<endl;
         cout<<"You neither gained nor lost experience."<<endl;
