@@ -6,21 +6,6 @@
  *          for the game of Pokemon -- a turn based strategy battle game
  */
 
-/* Project Requirements: 
- * Minimum of 250 lines of code     X
- * Functions                        X
- * One Dimensional Array
- * Two Dimensional Array            X
- * Pass arrays between functions    X
- * Function Pass by Value           X
- * Function Pass by reference       X
- * Defaulted Parameters             X
- * Returning primitive data types   X
- * Output format    
- * Read and write to file           X
- * Sorting game players and searching 
- */
-
 //System Libraries
 #include <cstdlib>  //c standard 
 #include <iostream> //input output stream 
@@ -142,14 +127,14 @@ void gameStr(){
     //Name
     //Experience
 void savGame(string name, float pmExp){
-    int tempExp;
-    string tempNm;
-    
-    ifstream inFile;
-    inFile.open("savedGame.txt");
-    getline(inFile, tempNm);
-    inFile>>pmExp;
-    inFile.close();
+//    int tempExp;
+//    string tempNm;
+//    
+//    ifstream inFile;
+//    inFile.open("savedGame.txt");
+//    getline(inFile, tempNm);
+//    inFile>>pmExp;
+//    inFile.close();
     
     ofstream myGame;
     myGame.open("savedGame.txt");
@@ -222,43 +207,43 @@ int battle(float &pmExp, int player[10][3]){
     if(pmExp <= 100){
         pmLvl   = player[0][0]; //Level = 1
         pmHp    = player[0][1]; //HP    = 100
-        
+        pmStrng = player[0][2]; //Strength = rand()%10+1
     } else if ((pmExp <= 500)&&(pmExp > 100)){
         pmLvl   = player[1][0]; //Level = 2
         pmHp    = player[1][1]; //HP    = 200
-        
+        pmStrng = player[1][2]; //Strength = rand()%15+5
     } else if ((pmExp <= 1000)&&(pmExp > 500)){
         pmLvl   = player[2][0]; //Level = 3
         pmHp    = player[2][1]; //HP    = 300
-        
+        pmStrng = player[2][2]; //Strength = rand()%20+10
     } else if (pmExp >= 1500){
         pmLvl   = player[3][0]; //Level = 4
         pmHp    = player[3][1]; //HP    = 400
-        
+        pmStrng = player[3][2]; //Strength = rand()%25+15
     } else if (pmExp >= 2500){
         pmLvl   = player[4][0]; //Level = 5
         pmHp    = player[4][1]; //HP    = 500
-        
+        pmStrng = player[4][2]; //Strength = rand()%30+20
     } else if (pmExp >= 3600){
         pmLvl   = player[5][0]; //Level = 6
         pmHp    = player[5][1]; //HP    = 600
-        
-    }else if (pmExp >= 3600){
+        pmStrng = player[5][2]; //Strength = rand()%35+25
+    }else if (pmExp >= 4000){
         pmLvl   = player[6][0]; //Level = 7
         pmHp    = player[6][1]; //HP    = 700
-        
-    }else if (pmExp >= 3600){
+        pmStrng = player[6][2]; //Strength = rand()%40+30
+    }else if (pmExp >= 4500){
         pmLvl   = player[7][0]; //Level = 8
         pmHp    = player[7][1]; //HP    = 800
-        
-    }else if (pmExp >= 3600){
+        pmStrng = player[7][2]; //Strength = rand()%45+35
+    }else if (pmExp >= 5000){
         pmLvl   = player[8][0]; //Level = 9
         pmHp    = player[8][1]; //HP    = 900
-        
-    }else if (pmExp >= 3600){
+        pmStrng = player[8][2]; //Strength = rand()%50+40
+    }else if (pmExp >= 10000){
         pmLvl   = player[9][0]; //Level = 10
         pmHp    = player[9][1]; //HP    = 1000
-        
+        pmStrng = player[9][2]; //Strength = rand()%55+45
     }
             
     //Calculate the enemy's level and hit points    
@@ -332,7 +317,7 @@ int battle(float &pmExp, int player[10][3]){
             pmExp -= ((rand()%5+1)*fLvl);
             cout<<"You lost "<<pmExp<<" experience points!"<<endl;
             cout<<"Your current level is now at "<<pmLvl<<endl;
-        } else cout<<"Your level is too low to lose a level!"<<endl;
+        } else cout<<"Your level is too low to lose experience!"<<endl;
     } else if ((fHp <= 0)&&(pmHp >= 0)&&(fHp != -99)){
         cout<<"CONGRATS! YOU WON THE BATTLE!"<<endl;
         newExp = (rand()%100+75)*(pmLvl);
