@@ -17,7 +17,7 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-void savGame(int **);
+void savGame(int [][3]);
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
@@ -51,14 +51,7 @@ int main(int argc, char** argv) {
        
     //Initialize the array with values
     
-    //Output
-    for (int x=0; x < ROWS; x++){
-        for(int y=0; y < COLS; y++){
-            cout<<fixed<<setw(4)<<setprecision(2)<<showpoint;
-            cout<<player[x][y]<<" ";
-        }
-        cout<<endl;
-    }
+    
     
     if(pmExp <= 100){
         pmLvl = 1;
@@ -85,4 +78,17 @@ int main(int argc, char** argv) {
     
     //Exit Stage Right!
     return 0;
+}
+
+savGame(int player**){
+    //Declare Variables
+    
+    //Output
+    for (int x=0; x < 10; x++){
+        for(int y=0; y < 3; y++){
+            cout<<fixed<<setw(4)<<setprecision(2)<<showpoint;
+            cout<<player[x][y]<<" ";
+        }
+        cout<<endl;
+    }
 }

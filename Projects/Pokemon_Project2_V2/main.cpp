@@ -39,7 +39,7 @@ void ldGame(string&, float&);
 void btlMenu();
 void newGame(string&);
 void savGame(string, float);
-int battle(float&, int[][]);   
+int battle(float&, int[10][3]);   
     //Return Experience Points attained
     //Return information about pokemon
 
@@ -107,7 +107,7 @@ int main(int argc, char** argv) {
         cin>>choice;
         switch (choice){
             case '1':{
-                battle(pmExp, player[][3]); 
+                battle(pmExp, player); 
                 break;
             }
             case '2':{
@@ -195,7 +195,7 @@ void newGame(string &name){
 }
 
 //Function to initiate battle sequence...
-int battle(float &pmExp, int player[][3]){
+int battle(float &pmExp, int player[10][3]){
     //Initialize random number seed
     srand(static_cast<unsigned int>(time(0)));
     //Declare Variables -- Get them ready for battle!
@@ -209,25 +209,49 @@ int battle(float &pmExp, int player[][3]){
             pmStrng = 0;  //Pokemon Strength        
             
     //Determine level of the player based on the accumulated experience
+    //Determine Hit Points of the player based on the accumulated experience
     if(pmExp <= 100){
-        pmLvl   = player[0][0]; 
-        pmHp    = player[0][1];
-        pmStrng = player[0][2];
-        cout<<player[0][0]<<"\t"<<player[0][1]<<"\t"<<player[0][2];
+        pmLvl   = player[0][0]; //Level = 1
+        pmHp    = player[0][1]; //HP    = 100
+        
     } else if ((pmExp <= 500)&&(pmExp > 100)){
+        pmLvl   = player[1][0]; //Level = 2
+        pmHp    = player[1][1]; //HP    = 200
         
     } else if ((pmExp <= 1000)&&(pmExp > 500)){
+        pmLvl   = player[2][0]; //Level = 3
+        pmHp    = player[2][1]; //HP    = 300
         
     } else if (pmExp >= 1500){
+        pmLvl   = player[3][0]; //Level = 4
+        pmHp    = player[3][1]; //HP    = 400
         
     } else if (pmExp >= 2500){
+        pmLvl   = player[4][0]; //Level = 5
+        pmHp    = player[4][1]; //HP    = 500
         
     } else if (pmExp >= 3600){
+        pmLvl   = player[5][0]; //Level = 6
+        pmHp    = player[5][1]; //HP    = 600
+        
+    }else if (pmExp >= 3600){
+        pmLvl   = player[6][0]; //Level = 7
+        pmHp    = player[6][1]; //HP    = 700
+        
+    }else if (pmExp >= 3600){
+        pmLvl   = player[7][0]; //Level = 8
+        pmHp    = player[7][1]; //HP    = 800
+        
+    }else if (pmExp >= 3600){
+        pmLvl   = player[8][0]; //Level = 9
+        pmHp    = player[8][1]; //HP    = 900
+        
+    }else if (pmExp >= 3600){
+        pmLvl   = player[9][0]; //Level = 10
+        pmHp    = player[9][1]; //HP    = 1000
         
     }
             
-            
-    
     //Calculate the enemy's level and hit points    
     if((pmLvl == 1)||(pmLvl == 2)){
         fLvl = rand()%3+1;
@@ -260,12 +284,13 @@ int battle(float &pmExp, int player[][3]){
         switch (select){
             case '1':{
                 //Attack the enemy!
-                fHp -= pmStrng;
+                int dmg = pmStrng*pmLvl;
+                fHp -= dmg;
                 cout<<"You attack the enemy!"<<endl;
-                if(pmStrng > 8){
+                if(dmg > 8){
                     cout<<"Critical Hit!!"<<endl;
                 }
-                cout<<"You hit the enemy for "<<pmStrng<<" damage!"<<endl;
+                cout<<"You hit the enemy for "<<dmg<<" damage!"<<endl;
                 cout<<"The enemy HP is now at: "<<fHp<<endl<<endl;
                 if(fHp > 0){
                     cout<<"The enemy attacks you!"<<endl<<"You get hit for "<<fStrng<<" damage."<<endl;
@@ -294,8 +319,8 @@ int battle(float &pmExp, int player[][3]){
     if((pmHp <= 0)&&(fHp >= 0)&&(fHp != -99)){
         cout<<"You lost the battle."<<endl;
         if (pmLvl > 1){
-            cout<<"You lost a level!"<<endl;
-            pmLvl--;
+            pmExp -= ((rand()%5+1)*fLvl);
+            cout<<"You lost "<<pmExp<<" experience points!"<<endl;
             cout<<"Your current level is now at "<<pmLvl<<endl;
         } else cout<<"Your level is too low to lose a level!"<<endl;
     } else if ((fHp <= 0)&&(pmHp >= 0)&&(fHp != -99)){
