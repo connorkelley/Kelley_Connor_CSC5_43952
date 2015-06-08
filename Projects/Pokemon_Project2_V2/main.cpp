@@ -11,7 +11,7 @@
  * Functions                        X
  * One Dimensional Array
  * Two Dimensional Array            X
- * Pass arrays between functions    
+ * Pass arrays between functions    X
  * Function Pass by Value           X
  * Function Pass by reference       X
  * Defaulted Parameters             X
@@ -142,6 +142,15 @@ void gameStr(){
     //Name
     //Experience
 void savGame(string name, float pmExp){
+    int tempExp;
+    string tempNm;
+    
+    ifstream inFile;
+    inFile.open("savedGame.txt");
+    getline(inFile, tempNm);
+    inFile>>pmExp;
+    inFile.close();
+    
     ofstream myGame;
     myGame.open("savedGame.txt");
     myGame<<name;
@@ -308,6 +317,7 @@ int battle(float &pmExp, int player[10][3]){
                     cout<<"Oh no! You failed to run away!!"<<endl;
                     cout<<"The enemy attacks you! You get hit for "<<fStrng<<" damage."<<endl;
                     pmHp -= fStrng;
+                    cout<<fixed<<setprecision(2)<<showpoint;
                     cout<<"Your HP is now at: "<<pmHp<<endl;
                 }
                 break;
